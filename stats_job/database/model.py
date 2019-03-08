@@ -2,12 +2,20 @@ import datetime
 import os
 
 from sqlalchemy import create_engine, Column, DateTime, Integer, Sequence
-from sqlalchemy import String, Table, ForeignKey
+from sqlalchemy import Boolean, ForeignKey, String, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 
 Base = declarative_base()
+
+
+class User(Base):
+    user_id = Column(Integer, primary_key=True)
+    public_id = Column(String(50), unique=True)
+    name = Column(String(80))
+    password = Column(String(80))
+    admin = Column(Boolean)
 
 
 class JobRun(Base):
